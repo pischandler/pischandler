@@ -91,8 +91,8 @@ Flask API  →  HSV segmentation  →  188 features  →  XGBoost  →  JSON res
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=pischandler&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" />
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=pischandler&layout=compact&theme=github_dark&hide_border=true&langs_count=6" />
+<img height="160" src="https://streak-stats.demolab.com?user=pischandler&theme=github-dark-blue&hide_border=true&date_format=j%20M%5B%20Y%5D" />
+<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=pischandler&layout=compact&theme=github_dark&hide_border=true&langs_count=6&cache_seconds=86400" />
 
 </div>
 
