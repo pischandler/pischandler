@@ -16,7 +16,7 @@
 
 Computer Engineering student at **UEPG (Brazil)** — finishing my undergraduate thesis on low-cost smart agriculture with IoT and ML.
 
-I build across the stack: **production APIs and SPAs** on the web side, **embedded firmware** on the hardware side, and **ML inference pipelines** connecting both. I also run **[dotwave](https://dotwave.com.br/)**, a freelance studio delivering institutional sites, web systems, and landing pages.
+I build across the stack: **production APIs and SPAs** on the web side, **embedded firmware** on the hardware side, and **ML inference pipelines** connecting both. I also run **[dotwave](https://dotwave.com.br/)**, a freelance studio building landing pages, institutional websites and custom web systems (incl. paid traffic campaigns).
 
 - 🔬 **Thesis:** low-cost smart garden integrating ESP32-S3 + OV2640 camera with a Flask ML API for real-time tomato leaf disease detection
 - 🌐 **Web:** TypeScript, NestJS, Vue.js, Next.js — APIs and SPAs from design to deploy
