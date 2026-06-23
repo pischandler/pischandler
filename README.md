@@ -14,13 +14,14 @@
 
 ## About me
 
-Computer Engineering student at **UEPG (Brazil)** — finishing my undergraduate thesis on low-cost smart agriculture with IoT and ML.
+Computer Engineering student at **UEPG (Brazil)** — undergraduate thesis completed and graded **10/10**, with research paper submitted to **ENIAC 2026 (BRACIS)**.
 
 I build across the stack: **production APIs and SPAs** on the web side, **embedded firmware** on the hardware side, and **ML inference pipelines** connecting both. I also run **[dotwave](https://dotwave.com.br/)**, a freelance studio building landing pages, institutional websites and custom web systems (incl. paid traffic campaigns).
 
-- 🔬 **Thesis:** low-cost smart garden integrating ESP32-S3 + OV2640 camera with a Flask ML API for real-time tomato leaf disease detection
+- 🎓 **Thesis:** low-cost smart garden integrating ESP32-S3 + OV2640 camera with an interpretable ML pipeline for real-time tomato leaf disease detection — **graded 10/10**
+- 📄 **Paper:** submitted to ENIAC 2026 (BRACIS) — *Pipeline Interpretável para Detecção de Doenças Foliares em Tomateiro com Inferência em Borda via Rust/ONNX*
 - 🌐 **Web:** TypeScript, NestJS, Vue.js, Next.js — APIs and SPAs from design to deploy
-- 🤖 **ML:** 188 handcrafted features (Haralick, Zernike, LBP, HSV, Hu moments), XGBoost/RF/SVM, StratifiedGroupKFold
+- 🤖 **ML:** 188 handcrafted features (Haralick, Zernike, LBP, HSV, Hu moments), XGBoost/SVM/RF, StratifiedGroupKFold, ONNX Runtime
 - ⚙️ **Embedded:** ESP32-S3, PlatformIO, C/C++, sensor arrays, actuator control, OV2640 streaming
 
 ---
@@ -29,16 +30,23 @@ I build across the stack: **production APIs and SPAs** on the web side, **embedd
 
 ### [`uepg-garden-lowcost-iot-ml`](https://github.com/pischandler/uepg-garden-lowcost-iot-ml)
 
-> End-to-end smart garden prototype built for a budget. The ESP32-S3 reads soil moisture, light, temperature and humidity, controls irrigation and ventilation, streams camera frames — and sends them to a Flask ML API that extracts 188 features and returns a disease prediction in < 500 ms.
+> End-to-end smart garden prototype built for a budget. The ESP32-S3 reads soil moisture, light, temperature and humidity, controls irrigation and ventilation, streams camera frames — and sends them to a Rust/Axum inference server (ONNX Runtime) that extracts 188 features and returns a disease prediction in ~13 ms median latency.
 
 ```
 ESP32-S3 (sensors + OV2640)  →  /capture endpoint
         ↓
-Flask API  →  HSV segmentation  →  188 features  →  XGBoost  →  JSON response
-(classe_predita · score · top-k · timings_ms)
+Rust/Axum server  →  HSV segmentation  →  188 features  →  XGBoost  →  JSON response
+(classe_predita · score · top-k · timings_ms · quality gates)
 ```
 
-**Stack:** C/C++ · PlatformIO · Python 3.10+ · Flask · XGBoost · OpenCV · Albumentations · Docker · GitHub Actions · Prometheus
+**Highlights:**
+- XGBoost: macro F1 **96.19%** (MCC 0.9607) · MobileNetV3-Small baseline: **99.02%**
+- Rust backend: **13.2 ms** median latency vs 24.5 ms Python/Flask (Mann-Whitney U, p < 0.001)
+- **82% lower memory footprint** (38 MB vs 210 MB) — enables edge deployment on Raspberry Pi Zero 2W
+- HSV segmentation removes PlantVillage white background bias, improving real-world robustness
+- StratifiedGroupKFold + SHA-256 deduplication to prevent data leakage
+
+**Stack:** C/C++ · PlatformIO · Python 3.10+ · Rust · Axum · ONNX Runtime · XGBoost · OpenCV · Docker · GitHub Actions
 
 [![Repo](https://img.shields.io/badge/View%20Repo-181717?style=flat-square&logo=github)](https://github.com/pischandler/uepg-garden-lowcost-iot-ml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://github.com/pischandler/uepg-garden-lowcost-iot-ml/blob/main/LICENSE)
@@ -54,12 +62,13 @@ Flask API  →  HSV segmentation  →  188 features  →  XGBoost  →  JSON res
 ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
 
 **Frontend**
 
 ![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)
+![Svelte](https://img.shields.io/badge/Svelte-FF3E00?style=flat-square&logo=svelte&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
@@ -69,6 +78,7 @@ Flask API  →  HSV segmentation  →  188 features  →  XGBoost  →  JSON res
 
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-189AB4?style=flat-square&logo=python&logoColor=white)
+![ONNX](https://img.shields.io/badge/ONNX-005CED?style=flat-square&logo=onnx&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
 
